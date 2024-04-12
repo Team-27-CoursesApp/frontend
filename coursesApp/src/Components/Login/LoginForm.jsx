@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   return (
@@ -35,7 +36,7 @@ const LoginForm = () => {
 
       <div className="mt-6 flex justify-between">
         <button type="submit" className="bg-indigo-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">Логирај се</button>
-        <button type="submit" className="border border-indigo-500 text-indigo-500 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Регистрација</button>
+        <Link to="/register" className="border border-indigo-500 text-indigo-500 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Регистрација</Link>
       </div>
     </form>
   );
