@@ -14,7 +14,7 @@ const RegisterPage = () => {
         </div>
       </div>
       <div className="w-full md:w-1/2 flex items-center justify-center">
-        <img src="../../../public/placeholder.svg" alt="placeholder-image" className="max-h-full max-w-full" />
+        <img src="/placeholder.svg" alt="placeholder-image" className="max-h-full max-w-full" />
       </div>
     </div>
   );
