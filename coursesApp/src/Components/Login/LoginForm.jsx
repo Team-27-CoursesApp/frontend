@@ -31,7 +31,7 @@ const LoginForm = () => {
           <input type="checkbox" id="remember-me" className="mr-2" />
           <label htmlFor="remember-me">Запамти ме</label>
         </div>
-        <a href="#" className="text-indigo-500 ml-4">Ја заборави лозинката?</a> {/* Added ml-4 for left margin */}
+        <a href="#" className="text-indigo-500 ml-4">Ја заборави лозинката?</a> 
       </div>
 
       <div className="mt-6 flex justify-between">
