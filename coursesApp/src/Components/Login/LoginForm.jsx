@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   return (
@@ -30,12 +31,12 @@ const LoginForm = () => {
           <input type="checkbox" id="remember-me" className="mr-2" />
           <label htmlFor="remember-me">Запамти ме</label>
         </div>
-        <a href="#" className="text-indigo-500 ml-4">Ја заборави лозинката?</a> {/* Added ml-4 for left margin */}
+        <a href="#" className="text-indigo-500 ml-4">Ја заборави лозинката?</a> 
       </div>
 
       <div className="mt-6 flex justify-between">
         <button type="submit" className="bg-indigo-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">Логирај се</button>
-        <button type="submit" className="border border-indigo-500 text-indigo-500 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Регистрација</button>
+        <Link to="/register" className="border border-indigo-500 text-indigo-500 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Регистрација</Link>
       </div>
     </form>
   );
