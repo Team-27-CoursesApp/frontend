@@ -1,5 +1,3 @@
-import img from "../assets/students.jpg";
-
 const AboutUs = () => {
   return (
     <div className="w-4/5 mx-auto">
@@ -12,7 +10,6 @@ const AboutUs = () => {
         и да напредуваат во широк спектар на курсеви дизајнирани да ги задоволат
         нивните различни потреби и интереси.
       </p>
-      <img className="w-full h-1/2 object-cover mt-5" src={img} />
       <h2 className="text-3xl uppercase font-bold mt-5">Нашата мисија</h2>
       <p className="text-2xl mt-5">
         Нашата мисија е да го направиме висококвалитетното учење достапно за

@@ -1,4 +1,4 @@
-import img from "../assets/IKT.png";
+import img from "../../assets/background.png";
 import EastIcon from "@mui/icons-material/East";
 
 const HomePage = () => {
