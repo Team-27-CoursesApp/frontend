@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from '../../Components/Login/LoginForm';
+import background from "../../assets/background.png";
 
 const LoginPage = () => {
   return (
@@ -15,7 +16,7 @@ const LoginPage = () => {
         </div>
       </div>
       <div className="w-full md:w-1/2 flex items-center justify-center">
-        <img src="/placeholder.svg" alt="placeholder-image" className="max-h-full max-w-full" />
+        <img src={background} alt="background-image" className="max-h-full max-w-full" />
       </div>
     </div>
   );
