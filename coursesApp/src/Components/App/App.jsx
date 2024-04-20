@@ -1,5 +1,9 @@
-import LoginPage from "../../Pages/Login/LoginPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "../../Pages/Login/LoginPage"
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
 import RegisterPage from "../../Pages/Register/RegisterPage";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import HomePage from "../../Pages/Home/HomePage";
@@ -8,8 +12,8 @@ import CategoriesPage from "../../Pages/Categories/CategoriesPage";
 import CourseListPage from "../../Pages/CourseList/CourseListPage";
 
 function App() {
-  return (
-    <BrowserRouter>
+    return (
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -20,7 +24,7 @@ function App() {
         <Route path="/courses/:category" element={<CourseListPage />} />
       </Routes>
     </BrowserRouter>
-  );
-}
+    );
+  }
 
 export default App;
