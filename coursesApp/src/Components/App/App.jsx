@@ -7,6 +7,7 @@ import {
 import RegisterPage from "../../Pages/Register/RegisterPage";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import HomePage from "../../Pages/Home/HomePage";
+import CourseDetails from "../../Pages/CourseDetails/CourseDetails";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/courseDetails" element={<CourseDetails/>}/>
       </Routes>
     </BrowserRouter>
   );
