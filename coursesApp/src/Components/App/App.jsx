@@ -4,6 +4,7 @@ import RegisterPage from "../../Pages/Register/RegisterPage";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import HomePage from "../../Pages/Home/HomePage";
 import CategoriesPage from "../../Pages/Categories/CategoriesPage";
+import CourseListPage from "../../Pages/CourseList/CourseListPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/courses" element={<CategoriesPage />} />
+        <Route path="/courses/:category" element={<CourseListPage />} />
       </Routes>
     </BrowserRouter>
   );
