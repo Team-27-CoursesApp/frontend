@@ -7,6 +7,7 @@ import {
 import RegisterPage from "../../Pages/Register/RegisterPage";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import HomePage from "../../Pages/Home/HomePage";
+import CourseDetails from "../../Pages/CourseDetails/CourseDetails";
 import CartPage from "../../Pages/Cart/CartPage";
 import CategoriesPage from "../../Pages/Categories/CategoriesPage";
 import CourseListPage from "../../Pages/CourseList/CourseListPage";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/courseDetails" element={<CourseDetails/>}/>
         <Route path="/cart" element={<CartPage />} />
         <Route path="/courses" element={<CategoriesPage />} />
         <Route path="/courses/:category" element={<CourseListPage />} />
