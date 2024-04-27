@@ -19,7 +19,7 @@ const Footer = () => {
                                     <a href="/aboutus" className="hover:underline">За нас</a>
                                 </li>
                                 <li>
-                                    <a href="/" className="hover:underline">Контакт</a>
+                                    <a href="/contactus" className="hover:underline">Контакт</a>
                                 </li>
                             </ul>
                         </div>

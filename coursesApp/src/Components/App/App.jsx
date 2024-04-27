@@ -8,6 +8,7 @@ import CartPage from "../../Pages/Cart/CartPage";
 import CategoriesPage from "../../Pages/Categories/CategoriesPage";
 import CourseListPage from "../../Pages/CourseList/CourseListPage";
 import CheckoutPage from "../../Pages/Checkout/CheckoutPage";
+import ContactPage from "../../Pages/Contact/ContactPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/courses" element={<CategoriesPage />} />
         <Route path="/courses/:category" element={<CourseListPage />} />
         <Route path="/payment" element={<CheckoutPage />} />
+        <Route path="/contactus" element={<ContactPage />} />
       </Routes>
     </BrowserRouter>
   );
