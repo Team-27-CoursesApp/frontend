@@ -40,8 +40,8 @@ const Header = (props) => {
                                 <a href="/courses"
                                    className="block py-2 px-3  rounded hover:bg-gray-100 lg:hover:bg-transparent  lg:hover:text-blue-700 lg:p-0 lg:dark:hover:text-blue-500 text-transform uppercase">Курсеви</a>
                             </li>
-                            <li>
-                                <a href="#"
+                            <li className={`${props.page === 'Lecturers' ? 'text-blue-500' : 'text-gray-900'}`}>
+                                <a href="/lecturers"
                                    className="block py-2 px-3  rounded hover:bg-gray-100 lg:hover:bg-transparent  lg:hover:text-blue-700 lg:p-0 lg:dark:hover:text-blue-500 text-transform uppercase">Предавачи</a>
                             </li>
                         </ul>
