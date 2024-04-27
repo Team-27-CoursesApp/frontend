@@ -1,10 +1,10 @@
 import React from "react";
 
 
-const Lecturers = () => {
+const LecturersPage = () => {
     return (
         <Lecturer />
     )
 }
 
-export default Lecturers;
+export default LecturersPage;
