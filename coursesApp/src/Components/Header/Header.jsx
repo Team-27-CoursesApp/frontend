@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import color_logo_no_background from '../../assets/LogoInfo/Logo Files/For Web/png/color_logo_no_background.png';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Search from "../Search/Search";
 
 const Header = () => {
     return (
@@ -10,11 +11,13 @@ const Header = () => {
                     <a href="/" className="flex items-center space-x-3 ">
                         <img src={color_logo_no_background} className="h-8" alt="SkillSphere logo" />
                     </a>
-                    <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                        <Link to="/shoppingcart">
-                            <ShoppingCartIcon href="/" sx={{ color: "#1560BD" }} />
+                    <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">    
+                        <Search />
+                        <Link to="/shoppingcart" className='pl-5'>
+                                <ShoppingCartIcon href="/" sx={{ color: "#1560BD" }} />
                         </Link>
-                    </div>
+                    </div> 
+
                     <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                         <Link to="/login">
                             <button
