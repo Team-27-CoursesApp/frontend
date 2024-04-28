@@ -1,35 +1,28 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { Store } from "../../Store";
 
 const CartPage = () => {
-  const course1 = {
-    id: 1,
-    img: "https://www.freecodecamp.org/news/content/images/2024/03/csharp2.png",
-    name: "Вовед во C#",
-    lecturer: {
-      id: 1,
-      fullName: "Adam Smith",
-    },
-    price: 1600,
-  };
-  const course2 = {
-    id: 2,
-    img: "https://miro.medium.com/v2/resize:fit:1400/1*x0d41ns8PTQZz4a3VbMrBg.png",
-    name: "Вовед во React",
-    lecturer: {
-      id: 1,
-      fullName: "Adam Smith",
-    },
-    price: 1600,
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart, userInfo } = state;
+
+  const removeItemHandler = (item) => {
+    ctxDispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
 
-  const [cartItems, setCartItems] = useState([course1, course2]);
+  const payHandler = () => {
+    if (cart.cartItems.reduce((a, c) => a + c.quantity, 0) != 0) {
+      console.log("Pay");
+      localStorage.removeItem("cartItems");
+      ctxDispatch({ type: "CART_CLEAR" });
+    }
+  };
 
   return (
     <div className="h-screen bg-gray-100 pt-20">
       <h1 className="mb-10 text-center text-2xl font-bold">Кошничка</h1>
       <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
-          {cartItems.map((course) => (
+          {cart.cartItems.map((course) => (
             <div
               key={course.id}
               className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
@@ -44,9 +37,11 @@ const CartPage = () => {
                   <h2 className="text-lg font-bold text-gray-900">
                     {course.name}
                   </h2>
+                  {/* 
                   <p className="mt-1 text-xs text-gray-700">
                     <b>Предавач:</b> {course.lecturer.fullName}
                   </p>
+                  */}
                   <p className="mt-1 text-xs text-gray-700">
                     <b>Цена:</b> {course.price} ден
                   </p>
@@ -54,6 +49,7 @@ const CartPage = () => {
                 <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                   <div className="flex items-center space-x-4">
                     <svg
+                      onClick={() => removeItemHandler(course)}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -79,13 +75,16 @@ const CartPage = () => {
             <p className="text-lg font-bold">Вкупно</p>
             <div className="">
               <p className="mb-1 text-lg font-bold">
-                {cartItems.reduce((a, c) => a + c.price, 0)} ден
+                {cart.cartItems.reduce((a, c) => a + c.price, 0)} ден
               </p>
             </div>
           </div>
           <hr className="my-4" />
 
-          <button className=" w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+          <button
+            onClick={payHandler}
+            className=" w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+          >
             Плати
           </button>
         </div>
