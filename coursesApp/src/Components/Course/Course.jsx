@@ -5,6 +5,7 @@ import courseImage from "../../assets/course.png";
 import SmartDisplayIcon from '@mui/icons-material/SmartDisplay';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import CommentWrapper from '../CommentWrapper/CommentWrapper';
 
 const Course = () => {
     const files = ['CelestialSymphony.pdf', 'SereneShadows.pdf', 'EnigmaEncounter.pdf', 'RadiantReflections.pdf', 'WhisperingWonders.pdf'];
@@ -45,8 +46,6 @@ const Course = () => {
 </div>
             </div>
         </div>
-        
-        {/* Course content section */}
         <div className="course-content p-5 sm:order-1">
             <h2 className='text-2xl font-bold mb-3'>Содржина на курсот: <LockOutlinedIcon/></h2>
             <div className='course-files flex flex-col justify-center blur-xs'>
@@ -55,6 +54,7 @@ const Course = () => {
                 ))}
             </div>
         </div>
+        <CommentWrapper/>
     </div>
     </>
   )
