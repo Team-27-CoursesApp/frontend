@@ -8,6 +8,7 @@ import CartPage from "../../Pages/Cart/CartPage";
 import CategoriesPage from "../../Pages/Categories/CategoriesPage";
 import CourseListPage from "../../Pages/CourseList/CourseListPage";
 import CheckoutPage from "../../Pages/Checkout/CheckoutPage";
+import LecturerPage from "../../Pages/Lecturers/LecturersPage"
 import CourseDetailsOfABoughtCoursePage from "../../Pages/CourseDetailsOfABoughtCourse/CourseDetailsOfABoughtCoursePage";
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/courses" element={<CategoriesPage />} />
         <Route path="/courses/:category" element={<CourseListPage />} />
         <Route path="/payment" element={<CheckoutPage />} />
+        <Route path="/lecturers" element={<LecturerPage />} />
       </Routes>
     </BrowserRouter>
   );
