@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import CourseCard from "../../Components/CourseCard/CourseCard";
 import { useState } from "react";
 import { Pagination } from "@mui/material";
+import Header from "../../Components/Header/Header";
+import Footer from "../../Components/Footer/Footer";
 
 const CourseListPage = () => {
   const params = useParams();
@@ -44,19 +46,23 @@ const CourseListPage = () => {
   const [courses, setCourses] = useState([course1, course2, course3, course4]);
 
   return (
-    <div>
-      <h2 className="text-center mt-5 text-3xl">{category}</h2>
-      <div className="flex justify-around mt-5 w-11/12 m-auto">
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-5">
-          {courses.map((c) => (
-            <CourseCard key={c.id} course={c} status={true} />
-          ))}
+    <>
+      <Header page={"Courses"} />
+      <div>
+        <h2 className="text-center mt-5 text-3xl">{category}</h2>
+        <div className="flex justify-around mt-5 w-11/12 m-auto">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-5">
+            {courses.map((c) => (
+              <CourseCard key={c.id} course={c} />
+            ))}
+          </div>
+        </div>
+        <div className="mt-5 flex justify-center">
+          <Pagination count={10} color="primary" className="mt-10 mb-10" />
         </div>
       </div>
-      <div className="mt-5 flex justify-center">
-        <Pagination count={10} color="primary" className="mt-10 mb-10" />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
