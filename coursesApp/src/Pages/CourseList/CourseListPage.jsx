@@ -47,7 +47,7 @@ const CourseListPage = () => {
 
   return (
     <>
-      <Header />
+      <Header page={"Courses"} />
       <div>
         <h2 className="text-center mt-5 text-3xl">{category}</h2>
         <div className="flex justify-around mt-5 w-11/12 m-auto">
