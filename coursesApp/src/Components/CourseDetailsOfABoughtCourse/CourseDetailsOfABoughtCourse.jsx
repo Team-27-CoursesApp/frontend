@@ -51,17 +51,6 @@ const CourseDetailsOfABoughtCourse = () => {
                         <div className="video-part">
                             <img src={courseImage} alt="course-image" />
                         </div>
-                        <div className="buy-part mb-5">
-                            <p className='text-lg font-bold mb-3'>1200 ден.</p>
-                            <div className='flex flex-col'>
-                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-3">
-                                    Додај во кошничка
-                                </button>
-                                <button className="border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 font-bold py-2 px-4 rounded-full">
-                                    Купи
-                                </button>  
-                            </div>
-                        </div>
                         <div className="details-part text-left">
                             <h3 className='text-xl font-bold pb-2'>Овој курс содржи: </h3>
                             <div>
@@ -74,8 +63,8 @@ const CourseDetailsOfABoughtCourse = () => {
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <div className="course-content p-5 sm:order-1">
                 <h2 className='text-2xl font-bold mb-3'>Содржина на курсот:</h2>
                 <div className="accordion">
