@@ -9,6 +9,8 @@ import CategoriesPage from "../../Pages/Categories/CategoriesPage";
 import CourseListPage from "../../Pages/CourseList/CourseListPage";
 import CheckoutPage from "../../Pages/Checkout/CheckoutPage";
 import LecturerPage from "../../Pages/Lecturers/LecturersPage"
+import CourseDetailsOfABoughtCoursePage from "../../Pages/CourseDetailsOfABoughtCourse/CourseDetailsOfABoughtCoursePage";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/courseDetails" element={<CourseDetails />} />
+        <Route path="/courseDetails/:courseId" element={<CourseDetailsOfABoughtCoursePage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/courses" element={<CategoriesPage />} />
         <Route path="/courses/:category" element={<CourseListPage />} />
