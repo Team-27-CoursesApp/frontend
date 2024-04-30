@@ -8,6 +8,8 @@ import CartPage from "../../Pages/Cart/CartPage";
 import CategoriesPage from "../../Pages/Categories/CategoriesPage";
 import CourseListPage from "../../Pages/CourseList/CourseListPage";
 import CheckoutPage from "../../Pages/Checkout/CheckoutPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ProfilePage from "../../Pages/Profile/ProfilePage";
 import LecturerPage from "../../Pages/Lecturers/LecturersPage";
 import CourseDetailsOfABoughtCoursePage from "../../Pages/CourseDetailsOfABoughtCourse/CourseDetailsOfABoughtCoursePage";
@@ -15,6 +17,7 @@ import CourseDetailsOfABoughtCoursePage from "../../Pages/CourseDetailsOfABought
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer position="bottom-center" limit={1} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
