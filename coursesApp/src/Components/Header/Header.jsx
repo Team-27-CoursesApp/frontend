@@ -158,10 +158,16 @@ const Header = (props) => {
                   </button>
                 </Link>
               )}
-
-              <Link to="/shoppingcart">
-                <ShoppingCartIcon sx={{ color: "#1560BD" }} />
-              </Link>
+              {userInfo && userInfo.role == "student" && (
+                <Link to="/cart">
+                  <ShoppingCartIcon sx={{ color: "#1560BD" }} />
+                  {cart.cartItems.length > 0 && (
+                    <span className="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-white bg-red-600 rounded-full">
+                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    </span>
+                  )}
+                </Link>
+              )}
             </div>
           </div>
         </div>

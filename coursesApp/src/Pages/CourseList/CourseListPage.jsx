@@ -1,60 +1,56 @@
 import { useParams } from "react-router-dom";
 import CourseCard from "../../Components/CourseCard/CourseCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import axios from "axios";
 
 const CourseListPage = () => {
   const params = useParams();
   const { category } = params;
+  const [foundCategory, setFoundCategory] = useState();
+  const [courses, setCourses] = useState([]);
 
-  // PlaceHolder for a courses
-  const course1 = {
-    id: 1,
-    img: "https://www.jetbrains.com/guide/assets/csharp-logo-265a149e.svg",
-    slug: "c-sharp-intro",
-    name: "Вовед во C#",
-    rating: 3.3,
-    price: 1600,
-  };
-  const course2 = {
-    id: 2,
-    img: "https://www.jetbrains.com/guide/assets/csharp-logo-265a149e.svg",
-    slug: "c-sharp-intro",
-    name: "Вовед во C#",
-    rating: 4.3,
-    price: 1600,
-  };
-  const course3 = {
-    id: 3,
-    img: "https://www.jetbrains.com/guide/assets/csharp-logo-265a149e.svg",
-    slug: "c-sharp-intro",
-    name: "Вовед во C#",
-    rating: 1.3,
-    price: 1600,
-  };
-  const course4 = {
-    id: 4,
-    img: "https://www.jetbrains.com/guide/assets/csharp-logo-265a149e.svg",
-    slug: "c-sharp-intro",
-    name: "Вовед во C#",
-    rating: 2.3,
-    price: 1600,
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`/api/categories/${category}`);
+        setFoundCategory(data);
+      } catch (error) {
+        console.log("Error fetching categories");
+      }
+    };
+    fetchData();
+  }, [category]);
 
-  const [courses, setCourses] = useState([course1, course2, course3, course4]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `/api/courses/category/${foundCategory.id}`
+        );
+        setCourses(data);
+      } catch (error) {
+        console.log("Error fetching categories");
+      }
+    };
+    fetchData();
+  }, [foundCategory]);
 
   return (
     <>
       <Header page={"Courses"} />
       <div>
-        <h2 className="text-center mt-5 text-3xl">{category}</h2>
+        <h2 className="text-center mt-5 text-3xl">
+          {foundCategory && foundCategory.name}
+        </h2>
         <div className="flex justify-around mt-5 w-11/12 m-auto">
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-5">
-            {courses.map((c) => (
-              <CourseCard key={c.id} course={c} />
-            ))}
+            {courses &&
+              courses.map((c) => (
+                <CourseCard key={c.id} course={c} status={true} />
+              ))}
           </div>
         </div>
         <div className="mt-5 flex justify-center">
