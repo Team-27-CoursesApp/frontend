@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer position="bottom-center" limit={1} />
+      <ToastContainer position="bottom-center" limit={1} autoClose={1000} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -32,7 +32,7 @@ function App() {
         <Route path="/courses" element={<CategoriesPage />} />
         <Route path="/courses/:category" element={<CourseListPage />} />
         <Route path="/payment" element={<CheckoutPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/:username" element={<ProfilePage />} />
         <Route path="/lecturers" element={<LecturerPage />} />
       </Routes>
     </BrowserRouter>

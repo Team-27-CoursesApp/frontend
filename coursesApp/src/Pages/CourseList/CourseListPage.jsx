@@ -11,6 +11,12 @@ const CourseListPage = () => {
   const { category } = params;
   const [foundCategory, setFoundCategory] = useState();
   const [courses, setCourses] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(1);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,15 +34,17 @@ const CourseListPage = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `/api/courses/category/${foundCategory.id}`
+          `/api/courses/category/${foundCategory.id}?page=${page}`
         );
-        setCourses(data);
+        setCourses(data.courses);
+        setPage(data.page);
+        setPages(data.pages);
       } catch (error) {
         console.log("Error fetching categories");
       }
     };
     fetchData();
-  }, [foundCategory]);
+  }, [foundCategory, page]);
 
   return (
     <>
@@ -54,7 +62,13 @@ const CourseListPage = () => {
           </div>
         </div>
         <div className="mt-5 flex justify-center">
-          <Pagination count={10} color="primary" className="mt-10 mb-10" />
+          <Pagination
+            count={pages}
+            page={page}
+            onChange={handlePageChange}
+            color="primary"
+            className="mt-10 mb-10"
+          />
         </div>
       </div>
       <Footer />
