@@ -43,7 +43,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         userInfo: null,
-        cart: { cartItems: [], shippingAddress: {}, paymentMethod: "" },
+        cart: { cartItems: [] },
       };
     default:
       return state;
