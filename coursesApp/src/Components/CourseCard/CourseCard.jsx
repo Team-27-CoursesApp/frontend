@@ -13,6 +13,21 @@ const CourseCard = ({ course, status }) => {
   const { userInfo, cart } = state;
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigateToCourse = async (e) => {
+    try {
+      const { data } = await axios.get(
+        `/api/user/owns?userId=${userInfo.id}&courseId=${course.id}`
+      );
+      if (data == false) {
+        navigate(`/course/${course.id}`);
+      } else {
+        navigate(`/my-courses/${course.id}`);
+      }
+    } catch (error) {
+      console.log("Error accessing course");
+    }
+  };
+
   const addToCartHandler = async (e) => {
     e.stopPropagation();
     setIsLoading(true);
@@ -41,7 +56,7 @@ const CourseCard = ({ course, status }) => {
 
   return (
     <div
-      onClick={() => navigate(`/course/${course.slug}`)}
+      onClick={navigateToCourse}
       className="bg-white shadow-2xl rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
     >
       <img
