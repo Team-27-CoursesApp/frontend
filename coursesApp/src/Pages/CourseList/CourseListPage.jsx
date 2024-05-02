@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import CourseCard from "../../Components/CourseCard/CourseCard";
 import { useEffect, useState } from "react";
-import { Pagination } from "@mui/material";
+import { CircularProgress, Pagination } from "@mui/material";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import axios from "axios";
@@ -13,6 +13,7 @@ const CourseListPage = () => {
   const [courses, setCourses] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePageChange = (event, value) => {
     setPage(value);
@@ -31,6 +32,7 @@ const CourseListPage = () => {
   }, [category]);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
@@ -39,6 +41,7 @@ const CourseListPage = () => {
         setCourses(data.courses);
         setPage(data.page);
         setPages(data.pages);
+        setIsLoading(false);
       } catch (error) {
         console.log("Error fetching categories");
       }
@@ -55,10 +58,14 @@ const CourseListPage = () => {
         </h2>
         <div className="flex justify-around mt-5 w-11/12 m-auto">
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-5">
-            {courses &&
+            {isLoading ? (
+              <CircularProgress size="1rem" color="inherit" />
+            ) : (
+              courses &&
               courses.map((c) => (
                 <CourseCard key={c.id} course={c} status={true} />
-              ))}
+              ))
+            )}
           </div>
         </div>
         <div className="mt-5 flex justify-center">

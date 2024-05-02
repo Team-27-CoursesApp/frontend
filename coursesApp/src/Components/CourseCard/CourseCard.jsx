@@ -1,18 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Store } from "../../Store";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 const CourseCard = ({ course, status }) => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo, cart } = state;
+  const [isLoading, setIsLoading] = useState(false);
 
   const addToCartHandler = async (e) => {
     e.stopPropagation();
+    setIsLoading(true);
     if (userInfo && userInfo.role == "student") {
       const { data } = await axios.get(
         `/api/user/owns?userId=${userInfo.id}&courseId=${course.id}`
@@ -26,10 +29,13 @@ const CourseCard = ({ course, status }) => {
       } else {
         toast.info("Веќе го поседувате курсот");
       }
+      setIsLoading(false);
     } else if (userInfo && userInfo.role == "lecturer") {
       toast.info("Предавачите неможат да купуваат курсеви");
+      setIsLoading(false);
     } else {
       toast.error("Најавете се");
+      setIsLoading(false);
     }
   };
 
@@ -74,7 +80,11 @@ const CourseCard = ({ course, status }) => {
               onClick={addToCartHandler}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Додади во кошничка
+              {isLoading ? (
+                <CircularProgress size="1rem" color="inherit" />
+              ) : (
+                "Додади во кошничка"
+              )}
             </button>
           </div>
         )}

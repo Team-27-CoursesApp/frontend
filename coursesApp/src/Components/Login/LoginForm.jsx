@@ -3,21 +3,25 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../../Store";
 import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const loginHandler = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       const { data } = await axios.post("/api/user/login", {
         email,
         password,
       });
+      setIsLoading(false);
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate("/");
@@ -79,7 +83,11 @@ const LoginForm = () => {
           type="submit"
           className="bg-indigo-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Логирај се
+          {isLoading ? (
+            <CircularProgress color="inherit" size="1rem" />
+          ) : (
+            "Логирај се"
+          )}
         </button>
         <Link
           to="/register"

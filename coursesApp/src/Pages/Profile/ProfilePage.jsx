@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { Store } from "../../Store";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
 
 const ProfilePage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -20,6 +21,7 @@ const ProfilePage = () => {
   const [isCreate, setIsCreate] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
+  const [coursesLoading, setCoursesLoading] = useState(false);
 
   //Creating course
   const [courseName, setCourseName] = useState("");
@@ -29,6 +31,7 @@ const ProfilePage = () => {
   const [courseCategory, setCourseCategory] = useState("");
   const [courseDescription, setCourseDescription] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,9 +68,11 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setCoursesLoading(true);
       try {
         const { data } = await axios.get(`/api/user/courses/${user.id}`);
         setCourses(data);
+        setCoursesLoading(false);
       } catch (error) {
         console.log("Error fetching courses");
       }
@@ -105,6 +110,7 @@ const ProfilePage = () => {
 
   const createCourseHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const { data } = await axios.post("/api/courses", {
         user: userInfo,
@@ -124,6 +130,7 @@ const ProfilePage = () => {
       setCoursePrice("");
       setCourseDescription("");
       setCourseCategory(categories[0].id);
+      setIsLoading(false);
       setRefresh(true);
       toast.success("Успешно креиран курс");
     } catch (error) {
@@ -312,16 +319,24 @@ const ProfilePage = () => {
               type="submit"
               className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
             >
-              Потврди
+              {isLoading ? (
+                <CircularProgress size="1rem" color="inherit" />
+              ) : (
+                "Потврди"
+              )}
             </button>
           </form>
         ) : null}
 
         <div className="flex justify-around mt-5 w-11/12 m-auto">
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-5">
-            {courses.map((c) => (
-              <CourseCard key={c.id} course={c} status={false} />
-            ))}
+            {coursesLoading ? (
+              <CircularProgress size="1rem" color="inherit" />
+            ) : (
+              courses.map((c) => (
+                <CourseCard key={c.id} course={c} status={false} />
+              ))
+            )}
           </div>
         </div>
       </section>

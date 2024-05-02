@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -11,8 +12,10 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student");
+  const [isLoading, setIsLoading] = useState(false);
 
   const registerHandler = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       const { data } = await axios.post("/api/user", {
@@ -24,6 +27,7 @@ const RegisterForm = () => {
         role,
       });
       toast.success("Успешна регистрација");
+      setIsLoading(false);
       navigate("/login");
     } catch (error) {
       toast.error("Неуспешна регистрација");
@@ -162,7 +166,11 @@ const RegisterForm = () => {
           type="submit"
           className="bg-indigo-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Регистрирај се
+          {isLoading ? (
+            <CircularProgress color="inherit" size="1rem" />
+          ) : (
+            "Регистрирај се"
+          )}
         </button>
         <Link
           to="/login"

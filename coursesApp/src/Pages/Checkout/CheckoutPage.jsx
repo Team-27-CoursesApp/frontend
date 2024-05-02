@@ -5,16 +5,19 @@ import Header from "../../Components/Header/Header";
 import axios from "axios";
 import { Store } from "../../Store";
 import { toast } from "react-toastify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const CheckoutPage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo, cart } = state;
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const paymentHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const { data } = await axios.post("/api/courses/payment", {
         user: userInfo,
@@ -23,6 +26,7 @@ const CheckoutPage = () => {
       localStorage.removeItem("cartItems");
       ctxDispatch({ type: "CART_CLEAR" });
       toast.success("Успешно плаќање");
+      setIsLoading(false);
       navigate(`/profile/${userInfo.username}`);
     } catch (error) {
       toast.error("Неуспешна најава");
@@ -134,7 +138,13 @@ const CheckoutPage = () => {
                 type="submit"
                 className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
               >
-                <LockIcon /> ПЛАТИ
+                {isLoading ? (
+                  <CircularProgress size="1rem" color="inherit" />
+                ) : (
+                  <>
+                    <LockIcon /> {"ПЛАТИ"}
+                  </>
+                )}
               </button>
             </div>
           </form>
