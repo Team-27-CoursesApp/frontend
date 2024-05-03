@@ -1,21 +1,46 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import FolderIcon from "@mui/icons-material/Folder";
-
 import courseImage from "../../assets/course.png";
+import axios from "axios";
+import { Store } from "../../Store";
+import { toast } from "react-toastify";
 
 const CourseDetailsOfABoughtCourse = ({ course }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleAccordion = () => setIsOpen(!isOpen);
+  const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState("");
+  const { state } = useContext(Store);
+  const { userInfo } = state;
+
+  const addCommentHandler = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post("/api/comments", {
+        username: userInfo.username,
+        profileImg: userInfo.imageUrl,
+        text: text,
+        userId: userInfo.id,
+        courseId: course.id,
+      });
+      toast.success("Коментарот е испратен");
+      setText("");
+      setIsLoading(false);
+    } catch (error) {
+      toast.error("Грешка при коментирање");
+    }
+  };
 
   const modules = [
     {
@@ -115,10 +140,37 @@ const CourseDetailsOfABoughtCourse = ({ course }) => {
           <iframe
             className="w-full rounded-lg h-svh"
             src={course.videoUrl.replace("watch?v=", "embed/")}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="autoplay; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
         )}
+
+        <div className="flex justify-center items-center mt-10">
+          <div className="h-80 px-7 w-[700px] rounded-[12px] bg-white p-4 shadow-md border">
+            <p className="text-xl font-semibold text-blue-900 cursor-pointer transition-all hover:text-black">
+              Коментирај
+            </p>
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              className="h-40 px-3 text-sm py-1 mt-5 outline-none border-gray-300 w-full resize-none border rounded-lg placeholder:text-sm"
+              placeholder="Коментар..."
+            ></textarea>
+
+            <div className="flex justify-between mt-2">
+              <button
+                onClick={addCommentHandler}
+                className="h-12 w-[150px] bg-blue-400 text-sm text-white rounded-lg transition-all cursor-pointer hover:bg-blue-600"
+              >
+                {isLoading ? (
+                  <CircularProgress size="1rem" color="inherit" />
+                ) : (
+                  "Испрати"
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

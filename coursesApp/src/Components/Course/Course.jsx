@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import courseImage from "../../assets/course.png";
@@ -26,6 +26,24 @@ const Course = ({ course }) => {
   const { userInfo, cart } = state;
   const [isLoading, setIsLoading] = useState(false);
   const [payIsLoading, setPayIsLoading] = useState(false);
+  const [commentsIsLoading, setCommentsIsLoading] = useState(false);
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`/api/comments/${course.id}`);
+        setComments(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("Error fetching comments");
+      }
+    };
+    if (course) {
+      fetchData();
+    }
+  }, [course]);
 
   const addToCartHandler = async (e, isPaying) => {
     if (isPaying == true) {
@@ -131,7 +149,9 @@ const Course = ({ course }) => {
             ))}
           </div>
         </div>
-        <CommentWrapper />
+        <div className="course-content p-5 sm:order-1">
+          <CommentWrapper comments={comments} />
+        </div>
       </div>
     </>
   );
