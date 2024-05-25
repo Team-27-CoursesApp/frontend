@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Accordion,
   AccordionSummary,
@@ -15,6 +15,8 @@ import courseImage from "../../assets/course.png";
 import axios from "axios";
 import { Store } from "../../Store";
 import { toast } from "react-toastify";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 
 const CourseDetailsOfABoughtCourse = ({ course }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +25,27 @@ const CourseDetailsOfABoughtCourse = ({ course }) => {
   const [isLoading, setIsLoading] = useState("");
   const { state } = useContext(Store);
   const { userInfo } = state;
+  const [gradeIsLoading, setGradeIsLoading] = useState(false);
+  const [grade, setGrade] = useState();
+  const [refresh, setRefresh] = useState(false);
+
+  const gradeRecipe = async (grade) => {
+    setGradeIsLoading(true);
+    try {
+      const { data } = axios.post("/api/grade", {
+        userId: userInfo.id,
+        courseId: course.id,
+        grade: grade,
+      });
+
+      toast.success("Успешно е оценет");
+      setGradeIsLoading(false);
+      setRefresh(true);
+    } catch (error) {
+      toast.error("Грешка при оценување");
+      setGradeIsLoading(false);
+    }
+  };
 
   const addCommentHandler = async () => {
     setIsLoading(true);
@@ -41,6 +64,23 @@ const CourseDetailsOfABoughtCourse = ({ course }) => {
       toast.error("Грешка при коментирање");
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `/api/grade?courseId=${course.id}&userId=${userInfo.id}`
+        );
+        setGrade(data);
+      } catch (error) {
+        console.log("Error fetching categories");
+      }
+    };
+    if (course || refresh) {
+      fetchData();
+      setRefresh(false);
+    }
+  }, [refresh, course, userInfo]);
 
   const modules = [
     {
@@ -143,6 +183,35 @@ const CourseDetailsOfABoughtCourse = ({ course }) => {
             allow="autoplay; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
+        )}
+
+        {userInfo.role == "student" && (
+          <div className="flex flex-col justify-center items-center mt-10">
+            <p className="text-xl font-semibold text-blue-900 cursor-pointer transition-all hover:text-black">
+              Оцени го курсот
+            </p>
+            <div>
+              {gradeIsLoading ? (
+                <CircularProgress size="1rem" color="inherit" />
+              ) : (
+                <>
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <span
+                      key={index}
+                      onClick={() => gradeRecipe(index + 1)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {grade > index ? (
+                        <StarIcon sx={{ color: "#fcd703" }} />
+                      ) : (
+                        <StarBorderIcon />
+                      )}
+                    </span>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
         )}
 
         <div className="flex justify-center items-center mt-10">

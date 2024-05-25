@@ -13,6 +13,7 @@ const CommentWrapper = ({ comments }) => {
               <hr />
             </>
           ))}
+        {comments.length == 0 && "Нема коментари за овој курс"}
       </div>
     </div>
   );

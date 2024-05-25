@@ -27,6 +27,7 @@ const LoginForm = () => {
       navigate("/");
     } catch (error) {
       toast.error("Неуспешна најава");
+      setIsLoading(false);
     }
   };
 

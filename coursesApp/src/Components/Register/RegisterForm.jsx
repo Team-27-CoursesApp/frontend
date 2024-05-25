@@ -31,6 +31,7 @@ const RegisterForm = () => {
       navigate("/login");
     } catch (error) {
       toast.error("Неуспешна регистрација");
+      setIsLoading(false);
     }
   };
 

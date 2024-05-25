@@ -10,11 +10,14 @@ import { CircularProgress } from "@mui/material";
 const CourseCard = ({ course, status }) => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo, cart } = state;
+  const { userInfo } = state;
   const [isLoading, setIsLoading] = useState(false);
 
   const navigateToCourse = async (e) => {
     try {
+      if (!userInfo) {
+        toast.error("Најавете се за да пристапите до курсот");
+      }
       const { data } = await axios.get(
         `/api/user/owns?userId=${userInfo.id}&courseId=${course.id}`
       );

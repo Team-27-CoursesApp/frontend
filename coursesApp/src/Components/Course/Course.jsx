@@ -68,14 +68,17 @@ const Course = ({ course }) => {
         }
       } else {
         toast.info("Веќе го поседувате курсот");
+        setPayIsLoading(false);
       }
       setIsLoading(false);
     } else if (userInfo && userInfo.role == "lecturer") {
       toast.info("Предавачите неможат да купуваат курсеви");
       setIsLoading(false);
+      setPayIsLoading(false);
     } else {
       toast.error("Најавете се");
       setIsLoading(false);
+      setPayIsLoading(false);
     }
   };
 
