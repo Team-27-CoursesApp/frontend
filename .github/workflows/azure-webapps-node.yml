@@ -35,9 +35,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: coursesApp
 
       - name: Build the React app
         run: npm run build
+        working-directory: coursesApp
 
       - name: Change back to root directory
         run: cd ..
