@@ -90,7 +90,7 @@ jobs:
       with:
         azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
         action: Deploy
-        service-name: skillsphere-app
-        app-name: springboot-app
+        service-name: skillsphere
+        app-name: skillsphere
         use-staging-deployment: false
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
