@@ -14,6 +14,10 @@ import LecturerPage from "../../Pages/Lecturers/LecturersPage";
 import CourseDetailsOfABoughtCoursePage from "../../Pages/CourseDetailsOfABoughtCourse/CourseDetailsOfABoughtCoursePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+
+axios.defaults.baseURL =
+  "https://skillsphere-app-springboot-app.azuremicroservices.io/";
 
 function App() {
   return (
