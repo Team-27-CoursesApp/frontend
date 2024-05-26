@@ -91,7 +91,7 @@ jobs:
         name: node-app
 
     - name: deploy to production with artifact
-      uses: azure/spring-cloud-deploy@v1
+      uses: azure/webapps-deploy@v1
       with:
         azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
         action: Deploy
