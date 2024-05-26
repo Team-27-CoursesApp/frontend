@@ -24,12 +24,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Verify Node.js version
-        run: node --version
-
-      - name: List directory contents
-        run: ls -la
-
       - name: Change to coursesApp directory
         run: cd coursesApp
 
@@ -57,4 +51,4 @@ jobs:
           service-name: skillsphere-app
           app-name: react-app
           use-staging-deployment: false
-          package: './coursesApp/build'  
+          package: './build'  
