@@ -3,7 +3,7 @@ name: AzureReactCloud
 on:
   push:
     branches:
-      - master # Adjust this to your deployment branch if different
+      - master
 
 env:
   ASC_PACKAGE_PATH: ${{ github.workspace }}
@@ -29,6 +29,9 @@ jobs:
 
       - name: List directory contents
         run: ls -la
+
+      - name: Change to coursesApp directory
+        run: cd coursesApp
 
       - name: Install dependencies
         run: npm install
