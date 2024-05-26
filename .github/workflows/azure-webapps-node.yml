@@ -51,4 +51,4 @@ jobs:
           service-name: skillsphere-app
           app-name: react-app
           use-staging-deployment: false
-          package: './dist'  
+          package: './coursesApp/dist'  
