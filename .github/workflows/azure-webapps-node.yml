@@ -8,7 +8,7 @@ on:
 env:
   ASC_PACKAGE_PATH: ${{ github.workspace }}
   AZURE_SUBSCRIPTION: 19218edb-1037-4857-a70a-9945ca909ad1
-  NODE_VERSION: '14.21.3'
+  NODE_VERSION: '14.x'
 
 jobs:
   deploy_to_production:
@@ -39,6 +39,9 @@ jobs:
       - name: Build the React app
         run: npm run build
 
+      - name: Change back to root directory
+        run: cd ..
+
       - name: Login via Azure CLI
         uses: azure/login@v1
         with:
@@ -52,4 +55,4 @@ jobs:
           service-name: skillsphere-app
           app-name: react-app
           use-staging-deployment: false
-          package: './build'
+          package: './coursesApp/build'  
