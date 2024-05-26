@@ -54,9 +54,7 @@ jobs:
       working-directory: coursesApp
       
     - name: Archive files
-      uses: montudor/action-zip@v0.2.0
-      with:
-        args: -r node-app.zip .  # Creates a zip archive of the current directory
+      run: zip -r node-app.zip . # Creates a zip archive of the current directory
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
