@@ -40,6 +40,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_2 }}
   build:
+    needs: login
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
