@@ -8,7 +8,7 @@ on:
 env:
   ASC_PACKAGE_PATH: ${{ github.workspace }}
   AZURE_SUBSCRIPTION: 19218edb-1037-4857-a70a-9945ca909ad1
-  NODE_VERSION: '14.x'
+  NODE_VERSION: '14.21.3'
 
 jobs:
   deploy_to_production:
@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
 
       - name: Verify Node.js version
         run: node --version
