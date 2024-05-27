@@ -53,7 +53,7 @@ const CourseListPage = () => {
     <>
       <Header page={"Courses"} />
       <div className={"dark:bg-gray-500 dark:text-white"}>
-        <h2 className="text-center mt-5 text-3xl">
+        <h2 className="text-center pt-5 text-3xl">
           {foundCategory && foundCategory.name}
         </h2>
         <div className="flex justify-around mt-5 w-11/12 m-auto">
