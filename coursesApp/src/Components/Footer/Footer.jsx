@@ -2,7 +2,7 @@ import color_logo_no_background from '../../assets/LogoInfo/Logo Files/For Web/p
 
 const Footer = () => {
     return (
-        <footer className="bg-white light:bg-gray-900 border-t border-gray-200 light:border-gray-600">
+        <footer className="bg-white light:bg-gray-900 border-t border-gray-700 light:border-gray-600 dark:bg-gray-900 dark:text-gray-300">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
@@ -13,7 +13,7 @@ const Footer = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Информации</h2>
+                            <h2 className="mb-6 text-sm font-semibold text-gray-900 dark:text-gray-300 uppercase ">Информации</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <a href="/aboutus" className="hover:underline">За нас</a>
@@ -24,7 +24,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Следете нѐ</h2>
+                            <h2 className="mb-6 text-sm font-semibold text-gray-900 dark:text-gray-300 uppercase ">Следете нѐ</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <a href="https://github.com/Team-27-CoursesApp"
@@ -36,7 +36,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Помош при купување</h2>
+                            <h2 className="mb-6 text-sm font-semibold text-gray-900 dark:text-gray-300 uppercase ">Помош при купување</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <a href="#" className="hover:underline">Политика на приватност</a>

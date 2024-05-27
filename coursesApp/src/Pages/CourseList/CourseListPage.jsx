@@ -52,7 +52,7 @@ const CourseListPage = () => {
   return (
     <>
       <Header page={"Courses"} />
-      <div>
+      <div className={"dark:bg-gray-500 dark:text-white"}>
         <h2 className="text-center mt-5 text-3xl">
           {foundCategory && foundCategory.name}
         </h2>

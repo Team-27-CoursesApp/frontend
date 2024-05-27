@@ -10,7 +10,7 @@ const HomePage = () => {
     return (
         <>
             <Header page={"Home"}/>
-            <div className="flex justify-evenly items-center md:flex-row flex-col">
+            <div className="flex justify-evenly items-center min-h-screen md:flex-row flex-col dark:bg-gray-900 dark:text-gray-300">
                 <img src={img} className="w-1/3 h-1/3"/>
                 <div className="flex flex-col justify-evenly items-center h-96 w-4/5 md:w-full">
                     <button

@@ -7,7 +7,7 @@ const RegisterPage = () => {
     return (
         <>
             <Header/>
-            <div className="flex flex-col md:flex-row h-screen">
+            <div className="flex flex-col md:flex-row min-h-screen pt-20 pb-20 dark:bg-gray-900">
                 <div className="w-full md:w-1/2 flex flex-col items-center justify-center md:pb-0 pb-8">
                     <div className="w-full max-w-md">
                         <h1 className="mb-3 text-blue-500 font-bold text-3xl">
@@ -18,7 +18,7 @@ const RegisterPage = () => {
                     </div>
                 </div>
                 <div className="w-full md:w-1/2 flex items-center justify-center">
-                    <img src={background} alt="background-image" className="max-h-full max-w-full"/>
+                    <img src={background} alt="background-image" className="md:max-h-full md:max-w-full"/>
                 </div>
             </div>
             <Footer/>
