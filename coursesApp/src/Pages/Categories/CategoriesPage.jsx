@@ -36,7 +36,7 @@ const CategoriesPage = () => {
                             <div
                                 onClick={() => navigate(`/courses/${category.slug}`)}
                                 key={category.id}
-                                className="bg-gray-400 mt-5 h-36 w-11/12 md:w-4/5 lg:w-2/3 flex items-center justify-center rounded cursor-pointer"
+                                className="bg-gray-400 pt-5 h-36 w-11/12 md:w-4/5 lg:w-2/3 flex items-center justify-center rounded cursor-pointer"
                             >
                                 <h1 className="lg:text-2xl md:text-xl text-lg text-center">
                                     Курсеви за{" "}
