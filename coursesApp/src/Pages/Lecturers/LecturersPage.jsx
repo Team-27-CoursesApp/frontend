@@ -79,7 +79,7 @@ const LecturersPage = () => {
   return (
     <>
       <Header page={"Lecturers"} />
-      <div>
+      <div className={"dark:bg-gray-500"}>
         <h2 className="text-center mt-5 text-3xl">{category}</h2>
         <div className="flex justify-around mt-5 w-11/12 m-auto">
           <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-10 mt-5">

@@ -72,7 +72,7 @@ const LoginForm = () => {
       <div className="flex items-center justify-between mt-4">
         <div className="flex items-center">
           <input type="checkbox" id="remember-me" className="mr-2" />
-          <label htmlFor="remember-me">Запамти ме</label>
+          <label htmlFor="remember-me" className={"dark:text-white"}>Запамти ме</label>
         </div>
         <a href="#" className="text-indigo-500 ml-4">
           Ја заборави лозинката?
